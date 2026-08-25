@@ -1,0 +1,10 @@
+{
+  "date": "2026-07-22",
+  "framework": "Next.js 16.2.6 App Router",
+  "fontStack": ["Manrope", "Plus Jakarta Sans"],
+  "palette": "Dark navy/orange CSS variables replaced by Bloom-style OKLCH carbon tokens",
+  "motion": "Motion-on; gsap installed and used by StaggeredMenu, with CSS/IntersectionObserver scroll cinematics",
+  "spacing": "4pt semantic CSS custom properties",
+  "preserved": ["App Router", "next/font", "local public image pipeline", "EcomPros orange accent"],
+  "introduced": ["Map / Diagram macrostructure", "N5 Floating Pill nav", "Ft5 Statement footer", "Hallmark tokens", "generated raster imagery"]
+}

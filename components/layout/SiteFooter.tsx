@@ -1,0 +1,162 @@
+import Link from "next/link";
+import { ArrowRight, BriefcaseBusiness } from "lucide-react";
+
+import Button from "@/components/ui/Button";
+import ThemeLogo from "@/components/ui/ThemeLogo";
+import { brand } from "@/lib/brand";
+
+const footerLinks = [
+  { href: "/services", label: "Services" },
+  { href: "/portfolio", label: "Portfolio" },
+  { href: "/team", label: "Team" },
+  { href: "/#workbench", label: "Workbench" },
+  { href: "/#booking", label: "Book call" },
+];
+
+const socialLinks = [
+  {
+    href: "https://www.linkedin.com/company/EcomPros",
+    label: "LinkedIn",
+    icon: <LinkedinIcon />,
+  },
+  {
+    href: "https://www.facebook.com/EcomPros",
+    label: "Facebook",
+    icon: <FacebookIcon />,
+  },
+  {
+    href: "https://www.youtube.com/@EcomPros-s6d",
+    label: "YouTube",
+    icon: <YoutubeIcon />,
+  },
+  {
+    href: "https://www.freelancer.com/u/EcomPros",
+    label: "Freelancer",
+    icon: <BriefcaseBusiness aria-hidden="true" className="site-footer__social-icon" size={18} />,
+  },
+];
+
+function LinkedinIcon() {
+  return (
+    <svg
+      aria-hidden="true"
+      className="site-footer__social-icon"
+      fill="none"
+      focusable="false"
+      stroke="currentColor"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="2"
+      viewBox="0 0 24 24"
+    >
+      <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z" />
+      <rect width="4" height="12" x="2" y="9" />
+      <circle cx="4" cy="4" r="2" />
+    </svg>
+  );
+}
+
+function FacebookIcon() {
+  return (
+    <svg
+      aria-hidden="true"
+      className="site-footer__social-icon"
+      fill="none"
+      focusable="false"
+      stroke="currentColor"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="2"
+      viewBox="0 0 24 24"
+    >
+      <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+    </svg>
+  );
+}
+
+function YoutubeIcon() {
+  return (
+    <svg
+      aria-hidden="true"
+      className="site-footer__social-icon"
+      fill="none"
+      focusable="false"
+      stroke="currentColor"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="2"
+      viewBox="0 0 24 24"
+    >
+      <path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.97C18.88 4 12 4 12 4s-6.88 0-8.59.45a2.78 2.78 0 0 0-1.95 1.97A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.97C5.12 20 12 20 12 20s6.88 0 8.59-.45a2.78 2.78 0 0 0 1.95-1.97A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z" />
+      <path d="m10 15 5-3-5-3z" />
+    </svg>
+  );
+}
+
+export default function SiteFooter() {
+  const year = new Date().getFullYear();
+
+  return (
+    <footer className="site-footer">
+      <div className="site-footer__inner">
+        <div className="site-footer__top">
+          <p className="site-footer__statement" data-cinematic="clip">
+            Keep every part of your ecommerce business moving.
+          </p>
+
+          <div className="site-footer__aside" data-cinematic="rise" data-cinematic-delay="1">
+            <p className="site-footer__note">
+              Ecom ProDesk brings marketplace operations, order fulfillment,
+              customer support, creative, marketing, and ecommerce development
+              into one practical service partner.
+            </p>
+
+            <div className="site-footer__chips" aria-label="Ecom ProDesk service focus">
+              <span>Marketplace operations</span>
+              <span>Order fulfillment</span>
+              <span>Customer support</span>
+              <span>Ecommerce growth</span>
+            </div>
+
+            <Button href="/#booking" size="sm" className="site-footer__cta">
+              Book call
+              <ArrowRight aria-hidden="true" size={16} />
+            </Button>
+          </div>
+        </div>
+
+        <div className="site-footer__meta" data-cinematic="rise" data-cinematic-delay="2">
+          <Link href="/" className="site-footer__brand" aria-label={`${brand.name} home`}>
+            <ThemeLogo alt={`${brand.name} logo`} className="site-footer__logo" priority />
+          </Link>
+
+          <nav aria-label="Footer" className="site-footer__links">
+            {footerLinks.map((item) => (
+              <Link key={item.href} href={item.href} className="footer-link">
+                {item.label}
+              </Link>
+            ))}
+          </nav>
+
+          <nav aria-label="Social media" className="site-footer__socials">
+            {socialLinks.map((item) => (
+              <a
+                key={item.href}
+                aria-label={`${brand.name} on ${item.label}`}
+                className="site-footer__social-link"
+                href={item.href}
+                rel="noopener noreferrer"
+                target="_blank"
+                title={item.label}
+              >
+                {item.icon}
+              </a>
+            ))}
+          </nav>
+
+          <p className="site-footer__credit">&copy; {year} {brand.name}.</p>
+        </div>
+      </div>
+    </footer>
+  );
+}

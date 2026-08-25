@@ -1,0 +1,8 @@
+# layout
+- Hero section should use full-bleed background image approach with content text overlaid, not card-based or floating-panel layouts. Confidence: 0.70
+- Compact scroll header: reduce header height/nav sizing on scroll but keep the full logo (not icon-only), with smooth CSS transition. Confidence: 0.75
+- Card grids within a tab/section should render equal-width AND equal-height cards — rows stretch uniformly (e.g., `grid-auto-rows: 1fr`) so cards match regardless of text length, with action elements aligned across cards. Confidence: 0.65
+- Company/client logos in card media previews should be fully contained and noticeably smaller than the container (e.g., capped at ~60% of width/height, centered with breathing room) rather than stretching edge-to-edge. Confidence: 0.55
+- Home page portfolio preview should be a tabbed sliding carousel — tabs to switch between service categories (web, motion, marketing), with projects browsed per-category. The slider should page in groups of at least 3 projects per row (desktop), not one card at a time; card grids within a page still follow the site's responsive column breakpoints. Confidence: 0.75
+- Clicking a project card in the home portfolio preview should open that specific project's detail modal directly (reusing the existing portfolio dialog pattern — media player, summary, description, services/stack lists) rather than linking away to the portfolio page. Confidence: 0.80
+- Portfolio content should be organized into service-category tabs (website/applications, motion/videos, marketing/SEO) on the portfolio page — new service lines are added as a new tab/category rather than mixed into existing ones. Confidence: 0.60

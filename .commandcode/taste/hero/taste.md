@@ -1,0 +1,11 @@
+# hero
+- Prefers play/pause behavior over scroll-scrubbing for hero video — video should play naturally when scrolled to full viewport width/height rather than mapping currentTime to scroll progress. Confidence: 0.80
+- Prefers direct currentTime assignment for hero video scrubbing (immediate seeking) over lerp-based easing — lerp approach was explicitly reverted after implementation. Confidence: 0.05
+- Hero video should start at frame 0 on page load, not show a random later frame. Confidence: 0.75
+- Hero content (title, subtitle, CTAs only — no badges or signal chips) should be positioned in the right-bottom corner, not centered. Confidence: 0.70
+- Hero section should have minimum padding consistent with other sections (use section-level padding), including x-padding on inner content. Confidence: 0.75
+- Hero title and subtitle font sizes should be smaller — keep the title restrained and the subtitle proportionally smaller alongside it. Confidence: 0.70
+- Hero title should fit on a single line (no wrapping) — constrain via max-width and/or font-size so it always occupies one line width. Confidence: 0.70
+- On mobile, hero title font-size should be increased (larger than the desktop-constrained fluid minimum). Confidence: 0.65
+- On mobile, hero CTA buttons should stay in a single row (no wrapping) — use `flex-wrap: nowrap` so they don't wrap onto multiple lines. Confidence: 0.70
+- Prefers WebGL/Shader-based animated backgrounds (e.g., Ferrofluid magnetic fluid effects) as the hero section backdrop — layered behind content with `position: absolute; inset: 0; z-index: 0; pointer-events: none`. Confidence: 0.55

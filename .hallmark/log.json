@@ -1,0 +1,30 @@
+[
+  {
+    "date": "2026-08-18",
+    "macrostructure": "Index-First",
+    "theme": "Bloom",
+    "enrichment": "none",
+    "brief": "EcomPros services hub with feature-stack detail pages"
+  },
+  {
+    "date": "2026-07-23",
+    "macrostructure": "Catalogue",
+    "theme": "Bloom",
+    "enrichment": "real team photography + profile modal",
+    "brief": "EcomPros team catalogue with modal profile details"
+  },
+  {
+    "date": "2026-07-22",
+    "macrostructure": "Catalogue",
+    "theme": "Bloom",
+    "enrichment": "real team photography",
+    "brief": "EcomPros team roster page"
+  },
+  {
+    "date": "2026-05-21",
+    "macrostructure": "Map / Diagram",
+    "theme": "Bloom",
+    "enrichment": "Tier C generated raster",
+    "brief": "EcomPros technical premium agency homepage"
+  }
+]
