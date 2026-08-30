@@ -250,6 +250,8 @@
   padding: 0 var(--space-xs) 0 var(--space-sm);
   text-transform: uppercase;
   backdrop-filter: blur(1rem) saturate(118%);
+  flex-shrink: 0;
+  white-space: nowrap;
 }
 
 .sm-toggle {
@@ -531,7 +533,14 @@
     inset-block-start: 0.75rem;
     inset-inline: 0.75rem;
     min-height: 3.75rem;
-    padding-inline: 1rem;
+    padding-inline: 0.75rem;
+    gap: 0.5rem;
+  }
+
+  .sm-logo {
+    flex-shrink: 0;
+    width: 120px;
+    height: 50px;
   }
 
   .sm-desktop-nav,
@@ -541,6 +550,7 @@
 
   .sm-toggle {
     display: inline-flex;
+    flex-shrink: 0;
   }
 
   .staggered-menu-panel,
@@ -582,9 +592,22 @@
     width: 7.25rem;
   }
 
+  .sm-toggle {
+    min-height: 2rem;
+    padding: 0 0.35rem;
+    gap: 0.35rem;
+  }
+
   .sm-toggle-textWrap {
-    width: 3.35rem;
-    min-width: 3.35rem;
+    width: 2.5rem;
+    min-width: 2.5rem;
+    font-size: 0.65rem;
+  }
+
+  .sm-icon {
+    width: 0.6rem;
+    height: 0.6rem;
+    flex: 0 0 0.6rem;
   }
 
   .sm-panel-item {

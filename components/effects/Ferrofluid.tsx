@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useMemo, useRef } from "react";
 import { Renderer, Program, Mesh, Triangle } from "ogl";
 import "./Ferrofluid.css";
 
@@ -245,6 +245,7 @@ const Ferrofluid: React.FC<FerrofluidProps> = ({
   const rendererRef = useRef<Renderer | null>(null);
   const mouseTargetRef = useRef<[number, number]>([0, 0]);
   const lastTimeRef = useRef(0);
+  const colorsKey = useMemo(() => colors.join(","), [colors]);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -253,9 +254,7 @@ const Ferrofluid: React.FC<FerrofluidProps> = ({
     if (!container) return;
 
     const renderer = new Renderer({
-      dpr:
-        dpr ??
-        (typeof window !== "undefined" ? window.devicePixelRatio || 1 : 1),
+      dpr: dpr ?? Math.min(window.devicePixelRatio || 1, 2),
       alpha: true,
       antialias: true,
     });
@@ -329,6 +328,15 @@ const Ferrofluid: React.FC<FerrofluidProps> = ({
     const ro = new ResizeObserver(resize);
     ro.observe(container);
 
+    const inViewportRef = { current: true };
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        inViewportRef.current = entry.isIntersecting;
+      },
+      { threshold: 0 }
+    );
+    io.observe(container);
+
     const onPointerMove = (e: PointerEvent) => {
       const rect = canvas.getBoundingClientRect();
       const sc = renderer.dpr || 1;
@@ -360,9 +368,15 @@ const Ferrofluid: React.FC<FerrofluidProps> = ({
       } else {
         lastTimeRef.current = t;
       }
-      if (!paused && programRef.current && meshRef.current) {
+      const shouldRender =
+        !paused &&
+        inViewportRef.current &&
+        !document.hidden &&
+        programRef.current &&
+        meshRef.current;
+      if (shouldRender) {
         try {
-          renderer.render({ scene: meshRef.current });
+          renderer.render({ scene: meshRef.current! });
         } catch (e) {
           console.error(e);
         }
@@ -375,6 +389,7 @@ const Ferrofluid: React.FC<FerrofluidProps> = ({
       if (mouseInteraction)
         canvas.removeEventListener("pointermove", onPointerMove);
       ro.disconnect();
+      io.disconnect();
       if (canvas.parentElement === container) {
         container.removeChild(canvas);
       }
@@ -387,7 +402,7 @@ const Ferrofluid: React.FC<FerrofluidProps> = ({
   }, [
     dpr,
     paused,
-    colors,
+    colorsKey,
     speed,
     scale,
     turbulence,

@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Manrope, Plus_Jakarta_Sans } from "next/font/google";
 
+import CustomCursor from "@/components/effects/CustomCursor";
 import SiteFooter from "@/components/layout/SiteFooter";
 import SiteHeader from "@/components/layout/SiteHeader";
 import { brand } from "@/lib/brand";
@@ -100,6 +101,7 @@ export default function RootLayout({
       className={`${manrope.variable} ${plusJakartaSans.variable}`}
     >
       <body className="site-body">
+        <CustomCursor />
         <a href="#main-content" className="skip-link">
           Skip to content
         </a>

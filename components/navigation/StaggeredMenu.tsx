@@ -66,14 +66,7 @@ export const StaggeredMenu = ({
   const [open, setOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isHeaderHidden, setIsHeaderHidden] = useState(false);
-  const [isDarkTheme, setIsDarkTheme] = useState(() => {
-    if (typeof window === "undefined") {
-      return false;
-    }
-
-    const savedTheme = window.localStorage.getItem("theme");
-    return savedTheme ? savedTheme === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches;
-  });
+  const [isDarkTheme, setIsDarkTheme] = useState(false);
   const openRef = useRef(false);
   const panelRef = useRef<HTMLElement | null>(null);
   const preLayersRef = useRef<HTMLDivElement | null>(null);
@@ -126,6 +119,13 @@ export const StaggeredMenu = ({
 
     return () => ctx.revert();
   }, [menuButtonColor, position]);
+
+  // Initialize theme after hydration to avoid hydration mismatch
+  useEffect(() => {
+    const savedTheme = window.localStorage.getItem("theme");
+    const theme = savedTheme ? savedTheme === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches;
+    setIsDarkTheme(theme);
+  }, []);
 
   const buildOpenTimeline = useCallback(() => {
     const panel = panelRef.current;

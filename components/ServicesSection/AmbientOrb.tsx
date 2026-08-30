@@ -78,6 +78,15 @@ export default function AmbientOrb() {
     let raf = 0;
     let mouseX = 0;
     let mouseY = 0;
+    let isVisible = true;
+
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        isVisible = entry.isIntersecting;
+      },
+      { threshold: 0 }
+    );
+    io.observe(mount);
 
     const handlePointerMove = (e: PointerEvent) => {
       const rect = mount.getBoundingClientRect();
@@ -98,7 +107,9 @@ export default function AmbientOrb() {
       group.rotation.y += mouseX * 0.15;
       group.rotation.x += mouseY * 0.08;
 
-      renderer.render(scene, camera);
+      if (isVisible && !document.hidden) {
+        renderer.render(scene, camera);
+      }
       raf = requestAnimationFrame(animate);
     };
     animate();
@@ -117,6 +128,7 @@ export default function AmbientOrb() {
       cancelAnimationFrame(raf);
       window.removeEventListener("pointermove", handlePointerMove);
       resizeObserver.disconnect();
+      io.disconnect();
       geoOuter.dispose();
       geoInner.dispose();
       wireOuter.geometry.dispose();

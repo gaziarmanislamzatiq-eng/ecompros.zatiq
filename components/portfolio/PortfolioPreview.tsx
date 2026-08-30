@@ -273,7 +273,7 @@ export default function PortfolioPreview({ projects, tabs }: PortfolioPreviewPro
                 data-media-type={selectedMedia.type}
                 data-orientation={selectedMedia.type === "video" ? selectedMedia.orientation : "landscape"}
               >
-                {renderDialogMedia(selectedMedia)}
+                {renderDialogMedia(selectedMedia, selectedProject.cover)}
               </div>
             ) : null}
 
@@ -503,17 +503,11 @@ function renderPreviewProjectLogo(project: PortfolioProject) {
   );
 }
 
-function renderDialogMedia(media: PortfolioMedia) {
+function renderDialogMedia(media: PortfolioMedia, cover?: PortfolioProject["cover"]) {
   if (media.type === "youtube") {
-    return (
-      <iframe
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        allowFullScreen
-        loading="lazy"
-        src={`https://www.youtube-nocookie.com/embed/${media.id}?autoplay=1&rel=0&modestbranding=1&mute=1&playsinline=1`}
-        title={media.title}
-      />
-    );
+    if (!cover) return null;
+
+    return <Image alt={cover.alt} fill sizes="(max-width: 767px) 100vw, 48rem" src={cover.src} />;
   }
 
   return (
