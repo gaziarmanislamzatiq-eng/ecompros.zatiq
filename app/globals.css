@@ -896,6 +896,262 @@ html[data-cinematics="active"] [data-cinematic-delay="6"] {
     radial-gradient(circle at 14% 16%, color-mix(in oklch, var(--color-silver) 10%, transparent), transparent 20rem);
 }
 
+.pricing-hero {
+  position: relative;
+  overflow: clip;
+  border-block-end: var(--rule-hair) solid var(--color-rule);
+  padding-block: calc(var(--space-4xl) + var(--space-xl)) var(--space-3xl);
+  background:
+    radial-gradient(circle at 18% 12%, color-mix(in oklch, var(--color-accent-soft) 62%, transparent), transparent 26rem),
+    var(--gradient-page);
+}
+
+.pricing-hero__title {
+  max-width: 22ch;
+  margin: 0;
+  color: var(--color-ink);
+  font-family: var(--font-display);
+  font-size: clamp(2.75rem, 5.4vw, var(--text-display-lg));
+  font-weight: 800;
+  letter-spacing: 0;
+  line-height: var(--lh-tight);
+  overflow-wrap: anywhere;
+}
+
+.pricing-note {
+  margin: var(--space-xl) 0 0;
+  color: var(--color-muted);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+}
+
+.pricing-tabs {
+  display: grid;
+  gap: var(--space-xl);
+}
+
+.pricing-tabs__list {
+  display: inline-flex;
+  width: fit-content;
+  flex-wrap: wrap;
+  gap: var(--space-2xs);
+  border: var(--rule-hair) solid var(--color-rule);
+  border-radius: var(--radius-pill);
+  background: color-mix(in oklch, var(--color-paper-3) 70%, transparent);
+  padding: var(--space-2xs);
+}
+
+.pricing-tabs__tab {
+  border-radius: var(--radius-pill);
+  color: var(--color-muted);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  padding: var(--space-xs) var(--space-lg);
+  transition: background var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out);
+}
+
+.pricing-tabs__tab:hover {
+  color: var(--color-ink);
+}
+
+.pricing-tabs__tab[data-active="true"] {
+  background: var(--color-accent);
+  color: var(--color-accent-ink);
+  box-shadow: var(--shadow-glow);
+}
+
+.pricing-carousel-wrap {
+  display: grid;
+  gap: var(--space-lg);
+}
+
+.pricing-carousel {
+  position: relative;
+  overflow: hidden;
+  cursor: grab;
+  border: var(--rule-hair) solid var(--color-rule);
+  border-radius: var(--radius-lg);
+  background: linear-gradient(180deg, var(--color-paper-3), var(--color-paper-2));
+  padding-block: var(--space-3xl);
+  -webkit-mask-image: linear-gradient(90deg, transparent, black 8%, black 92%, transparent);
+  mask-image: linear-gradient(90deg, transparent, black 8%, black 92%, transparent);
+}
+
+.pricing-carousel:active {
+  cursor: grabbing;
+}
+
+.pricing-carousel__track {
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg);
+  will-change: transform;
+}
+
+.pricing-carousel__item {
+  display: flex;
+  flex: 0 0 auto;
+  min-width: 0;
+  inline-size: clamp(13rem, 18vw, 16rem);
+  block-size: clamp(17rem, 24vw, 21rem);
+}
+
+.pricing-carousel__nav {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-sm);
+}
+
+.pricing-carousel__nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2xs);
+  border: var(--rule-hair) solid var(--color-rule);
+  border-radius: var(--radius-pill);
+  background: var(--color-paper-2);
+  color: var(--color-ink-soft);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  padding: var(--space-xs) var(--space-lg);
+  transition: border-color var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out),
+    background var(--dur-fast) var(--ease-out);
+}
+
+.pricing-carousel__nav-btn:hover {
+  border-color: var(--color-brand-accent);
+  background: color-mix(in oklch, var(--color-brand-accent) 12%, var(--color-paper-2));
+  color: var(--color-ink);
+}
+
+[data-theme="dark"] .pricing-carousel__nav-btn:hover {
+  background: color-mix(in oklch, var(--color-brand-accent) 18%, var(--color-paper-2));
+  color: var(--color-ink);
+}
+
+.pricing-card {
+  --card-glow: 0.14;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-width: 0;
+  inline-size: 100%;
+  block-size: 100%;
+  gap: var(--space-md);
+  border: 1.5px solid
+    color-mix(
+      in oklch,
+      var(--color-brand-accent) calc(var(--card-glow) * 100%),
+      var(--color-rule) calc((1 - var(--card-glow)) * 100%)
+    );
+  border-radius: var(--radius-lg);
+  background: var(--gradient-panel-raised);
+  box-shadow: 0 0 calc(var(--card-glow) * 4rem)
+    color-mix(in oklch, var(--color-brand-accent) calc(var(--card-glow) * 60%), transparent);
+  padding: var(--space-lg);
+  will-change: transform, opacity;
+}
+
+.pricing-card__index {
+  color: color-mix(
+    in oklch,
+    var(--color-brand-accent) calc(var(--card-glow) * 100%),
+    var(--color-muted-2) calc((1 - var(--card-glow)) * 100%)
+  );
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  letter-spacing: 0.08em;
+}
+
+.pricing-card__name {
+  color: var(--color-ink);
+  font-family: var(--font-display);
+  font-size: var(--text-md);
+  font-weight: 800;
+  line-height: var(--lh-title);
+}
+
+.pricing-card__name--mirror {
+  color: color-mix(in oklch, var(--color-ink) 40%, transparent);
+  font-size: var(--text-xs);
+  transform: rotate(180deg);
+}
+
+.pricing-card__body {
+  display: grid;
+  gap: var(--space-xs);
+}
+
+.pricing-card__price {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2xs);
+  color: var(--color-ink);
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: 800;
+}
+
+.pricing-card__cadence {
+  color: var(--color-muted-2);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: 600;
+}
+
+.pricing-card__cap {
+  color: var(--color-muted);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+}
+
+.pricing-card__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2xs);
+  color: var(--color-accent);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  transition: gap var(--dur-fast) var(--ease-out);
+}
+
+.pricing-card__cta:hover {
+  gap: var(--space-xs);
+}
+
+.pricing-cta__inner {
+  display: grid;
+  justify-items: start;
+  gap: var(--space-md);
+}
+
+.hole-reveal {
+  position: fixed;
+  inset: 0;
+  z-index: 9990;
+  pointer-events: none;
+  --hole-x: 50%;
+  --hole-y: 50%;
+  --hole-scale: 0;
+  --hole-radius: min(32vw, 26rem);
+  opacity: var(--hole-scale);
+  background: color-mix(in oklch, var(--color-ink) 90%, transparent);
+  -webkit-mask-image: radial-gradient(
+    circle calc(var(--hole-radius) * var(--hole-scale)) at var(--hole-x) var(--hole-y),
+    transparent 0,
+    transparent calc(100% - 1px),
+    black 100%
+  );
+  mask-image: radial-gradient(
+    circle calc(var(--hole-radius) * var(--hole-scale)) at var(--hole-x) var(--hole-y),
+    transparent 0,
+    transparent calc(100% - 1px),
+    black 100%
+  );
+}
+
 .services-hero,
 .service-detail-hero {
   position: relative;
@@ -2298,6 +2554,27 @@ html[data-cinematics="active"] [data-cinematic-delay="6"] {
 
 .booking-form[data-status="success"] .booking-form__status {
   color: var(--color-success);
+}
+
+.booking-form[data-status="error"] .booking-form__status {
+  color: var(--color-danger);
+}
+
+.booking-form__status a {
+  color: inherit;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+.booking-form__spinner {
+  animation: booking-form-spin 0.8s linear infinite;
+}
+
+@keyframes booking-form-spin {
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 /* Hallmark · macrostructure: Portfolio Grid · genre: atmospheric · theme: Bloom · tone: technical premium · anchor hue: warm orange · nav: N5 · footer: Ft5 · enrichment: local motion video playlist
@@ -4108,6 +4385,26 @@ html[data-cinematics="active"] [data-cinematic-delay="6"] {
     flex: 1 1 9rem;
     max-inline-size: 13rem;
     border-block-end: var(--rule-hair) solid var(--color-rule);
+  }
+
+  .pricing-carousel {
+    overflow-x: auto;
+    cursor: auto;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+
+  .pricing-carousel__track {
+    flex-wrap: wrap;
+    transform: none !important;
+  }
+
+  .pricing-carousel__nav {
+    display: none;
+  }
+
+  .hole-reveal {
+    display: none;
   }
 
   .team-profile-dialog[open] .team-profile-dialog__sheet {

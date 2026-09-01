@@ -7,9 +7,9 @@ const navigation: StaggeredMenuItem[] = [
   { label: "Home", ariaLabel: `${brand.name} home`, link: "/" },
   { label: "Services", ariaLabel: "View Ecom ProDesk services", link: "/services" },
   { label: "Portfolio", ariaLabel: "View Ecom ProDesk portfolio", link: "/portfolio" },
+  { label: "Pricing", ariaLabel: "View Ecom ProDesk pricing", link: "/pricing" },
   { label: "Team", ariaLabel: "Meet the Ecom ProDesk team", link: "/team" },
   { label: "Workbench", ariaLabel: "View the capability workbench", link: "/#workbench" },
-  { label: "Process", ariaLabel: "Review the Ecom ProDesk process", link: "/#process" },
   { label: "Proof", ariaLabel: "View client proof and marks", link: "/#proof" },
   { label: "Book call", ariaLabel: "Book a call with Ecom ProDesk", link: "/#booking" },
 ];

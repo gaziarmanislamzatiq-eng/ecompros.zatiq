@@ -527,8 +527,8 @@ export const StaggeredMenu = ({
           <Link href="/">Home</Link>
           <Link href="/services">Services</Link>
           <Link href="/portfolio">Portfolio</Link>
+          <Link href="/pricing">Pricing</Link>
           <Link href="/team">Team</Link>
-          <Link href="/#process">Process</Link>
           <Link href="/#booking">Contact</Link>
         </nav>
         <div className="sm-desktop-actions">

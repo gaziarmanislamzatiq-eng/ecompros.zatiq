@@ -360,10 +360,8 @@ export default function Home() {
               Bring the surface that needs to ship.
             </h2>
             <p className="section__copy">
-              Send the rough shape: new website, app interface, motion support,
-              security helper, or the mixed problem in between. The current v1
-              uses a prefilled email draft until Ecom ProDesk connects a real booking
-              endpoint.
+              Send the rough shape: which plan fits, the term you&apos;re thinking, and
+              the project note. It goes straight to Ecom ProDesk by email.
             </p>
           </div>
 
