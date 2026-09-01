@@ -415,8 +415,9 @@ export const StaggeredMenu = ({
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 24);
-      setIsHeaderHidden(window.scrollY > 200);
+      const scrolled = window.scrollY > 150;
+      setIsScrolled(scrolled);
+      setIsHeaderHidden(window.scrollY > 150);
     };
 
     handleScroll();
