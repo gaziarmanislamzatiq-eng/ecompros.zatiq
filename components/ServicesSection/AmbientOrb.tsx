@@ -1,17 +1,15 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import * as THREE from "three";
 
-/**
- * Lightweight ambient 3D scene: a slowly rotating wireframe icosahedron
- * built from connected nodes, sitting behind the sidebar. Purely decorative,
- * pointer-events are disabled so it never blocks the tab list.
- *
- * Kept dependency-light on purpose (raw three.js, no postprocessing) so it
- * stays cheap on low-power devices and never fights the GSAP timeline for
- * the main thread.
- */
+type Particle = {
+  x: number;
+  y: number;
+  vx: number;
+  vy: number;
+  radius: number;
+};
+
 export default function AmbientOrb() {
   const mountRef = useRef<HTMLDivElement | null>(null);
 
@@ -23,62 +21,51 @@ export default function AmbientOrb() {
       "(prefers-reduced-motion: reduce)"
     ).matches;
 
-    const width = mount.clientWidth;
-    const height = mount.clientHeight;
+    const canvas = document.createElement("canvas");
+    canvas.setAttribute("aria-hidden", "true");
+    canvas.style.width = "100%";
+    canvas.style.height = "100%";
+    canvas.style.display = "block";
+    canvas.style.opacity = "0.9";
+    mount.appendChild(canvas);
 
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 100);
-    camera.position.set(0, 0, 6.2);
+    const context = canvas.getContext("2d");
+    if (!context) return;
 
-    const renderer = new THREE.WebGLRenderer({
-      alpha: true,
-      antialias: true,
-      powerPreference: "low-power",
-    });
-    renderer.setSize(width, height);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    mount.appendChild(renderer.domElement);
-
-    const group = new THREE.Group();
-    scene.add(group);
-
-    // Layered wireframe icosahedrons for a faceted "network" feel
-    const geoOuter = new THREE.IcosahedronGeometry(2.15, 1);
-    const wireOuter = new THREE.LineSegments(
-      new THREE.WireframeGeometry(geoOuter),
-      new THREE.LineBasicMaterial({
-        color: 0xffffff,
-        transparent: true,
-        opacity: 0.35,
-      })
-    );
-    group.add(wireOuter);
-
-    const geoInner = new THREE.IcosahedronGeometry(1.35, 0);
-    const wireInner = new THREE.LineSegments(
-      new THREE.WireframeGeometry(geoInner),
-      new THREE.LineBasicMaterial({
-        color: 0xffffff,
-        transparent: true,
-        opacity: 0.22,
-      })
-    );
-    group.add(wireInner);
-
-    // Node points at the outer vertices
-    const pointsMat = new THREE.PointsMaterial({
-      color: 0xffffff,
-      size: 0.05,
-      transparent: true,
-      opacity: 0.9,
-    });
-    const points = new THREE.Points(geoOuter, pointsMat);
-    group.add(points);
-
-    let raf = 0;
-    let mouseX = 0;
-    let mouseY = 0;
+    const points: Particle[] = [];
+    let width = mount.clientWidth;
+    let height = mount.clientHeight;
+    let rafId = 0;
+    let pointerX = 0;
+    let pointerY = 0;
     let isVisible = true;
+
+    const createParticles = () => {
+      points.length = 0;
+      const count = Math.min(48, Math.max(26, Math.round((width * height) / 18)));
+
+      for (let i = 0; i < count; i += 1) {
+        points.push({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          vx: (Math.random() - 0.5) * 0.35,
+          vy: (Math.random() - 0.5) * 0.35,
+          radius: Math.random() * 2.1 + 1.1,
+        });
+      }
+    };
+
+    const resizeCanvas = () => {
+      width = mount.clientWidth;
+      height = mount.clientHeight;
+      const ratio = window.devicePixelRatio || 1;
+      canvas.width = width * ratio;
+      canvas.height = height * ratio;
+      canvas.style.width = `${width}px`;
+      canvas.style.height = `${height}px`;
+      context.setTransform(ratio, 0, 0, ratio, 0, 0);
+      createParticles();
+    };
 
     const io = new IntersectionObserver(
       ([entry]) => {
@@ -88,57 +75,89 @@ export default function AmbientOrb() {
     );
     io.observe(mount);
 
-    const handlePointerMove = (e: PointerEvent) => {
+    const handlePointerMove = (event: PointerEvent) => {
       const rect = mount.getBoundingClientRect();
-      mouseX = ((e.clientX - rect.left) / rect.width) * 2 - 1;
-      mouseY = ((e.clientY - rect.top) / rect.height) * 2 - 1;
+      pointerX = ((event.clientX - rect.left) / rect.width - 0.5) * 2;
+      pointerY = ((event.clientY - rect.top) / rect.height - 0.5) * 2;
     };
     window.addEventListener("pointermove", handlePointerMove);
 
-    const clock = new THREE.Clock();
+    resizeCanvas();
 
-    const animate = () => {
-      const t = clock.getElapsedTime();
-      const speed = prefersReducedMotion ? 0.04 : 0.16;
-      group.rotation.y = t * speed;
-      group.rotation.x = Math.sin(t * 0.12) * 0.25;
+    const draw = () => {
+      context.clearRect(0, 0, width, height);
 
-      // subtle mouse parallax, eased toward target
-      group.rotation.y += mouseX * 0.15;
-      group.rotation.x += mouseY * 0.08;
+      const baseHue = 50;
+      const offsetX = pointerX * 22;
+      const offsetY = pointerY * 18;
+
+      for (let i = 0; i < points.length; i += 1) {
+        const particle = points[i];
+        particle.x += particle.vx + (pointerX * 0.18);
+        particle.y += particle.vy + (pointerY * 0.12);
+
+        if (particle.x < 0 || particle.x > width) particle.vx *= -1;
+        if (particle.y < 0 || particle.y > height) particle.vy *= -1;
+
+        const glow = 0.12 + (Math.sin(Date.now() * 0.001 + i) + 1) * 0.1;
+        context.beginPath();
+        context.fillStyle = `hsla(${baseHue}, 100%, 96%, ${0.22 + glow})`;
+        context.arc(
+          particle.x + offsetX * 0.35,
+          particle.y + offsetY * 0.35,
+          particle.radius,
+          0,
+          Math.PI * 2
+        );
+        context.fill();
+      }
+
+      for (let i = 0; i < points.length; i += 1) {
+        const a = points[i];
+        for (let j = i + 1; j < points.length; j += 1) {
+          const b = points[j];
+          const dx = a.x - b.x;
+          const dy = a.y - b.y;
+          const distance = Math.hypot(dx, dy);
+
+          if (distance < 120) {
+            const opacity = 1 - distance / 120;
+            context.beginPath();
+            context.strokeStyle = `rgba(255,255,255,${opacity * 0.5})`;
+            context.lineWidth = 0.8;
+            context.moveTo(a.x + offsetX * 0.35, a.y + offsetY * 0.35);
+            context.lineTo(b.x + offsetX * 0.35, b.y + offsetY * 0.35);
+            context.stroke();
+          }
+        }
+      }
+
+      if (!prefersReducedMotion) {
+        for (const particle of points) {
+          particle.x += (particle.vx * 0.2) * 0.7;
+          particle.y += (particle.vy * 0.2) * 0.7;
+        }
+      }
 
       if (isVisible && !document.hidden) {
-        renderer.render(scene, camera);
+        rafId = requestAnimationFrame(draw);
       }
-      raf = requestAnimationFrame(animate);
     };
-    animate();
 
-    const handleResize = () => {
-      const w = mount.clientWidth;
-      const h = mount.clientHeight;
-      camera.aspect = w / h;
-      camera.updateProjectionMatrix();
-      renderer.setSize(w, h);
-    };
-    const resizeObserver = new ResizeObserver(handleResize);
+    rafId = requestAnimationFrame(draw);
+
+    const resizeObserver = new ResizeObserver(() => {
+      resizeCanvas();
+    });
     resizeObserver.observe(mount);
 
     return () => {
-      cancelAnimationFrame(raf);
+      cancelAnimationFrame(rafId);
       window.removeEventListener("pointermove", handlePointerMove);
       resizeObserver.disconnect();
       io.disconnect();
-      geoOuter.dispose();
-      geoInner.dispose();
-      wireOuter.geometry.dispose();
-      wireInner.geometry.dispose();
-      pointsMat.dispose();
-      (wireOuter.material as THREE.Material).dispose();
-      (wireInner.material as THREE.Material).dispose();
-      renderer.dispose();
-      if (renderer.domElement.parentNode === mount) {
-        mount.removeChild(renderer.domElement);
+      if (canvas.parentNode === mount) {
+        mount.removeChild(canvas);
       }
     };
   }, []);
@@ -147,7 +166,7 @@ export default function AmbientOrb() {
     <div
       ref={mountRef}
       aria-hidden="true"
-      className="pointer-events-none absolute inset-0 opacity-70 mix-blend-screen"
+      className="pointer-events-none absolute inset-0 opacity-80 mix-blend-screen"
     />
   );
 }

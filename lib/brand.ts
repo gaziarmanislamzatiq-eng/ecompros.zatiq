@@ -1,5 +1,5 @@
 export const brand = {
-  name: "Ecom ProDesk",
+  name: "EcomPros",
   description:
     "eCommerce Solutions & Digital Services Built to Grow Your Business",
 

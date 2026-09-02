@@ -7,6 +7,33 @@ const HOVER_SELECTOR =
   'a, button, [role="button"], input[type="submit"], input[type="button"], label, summary, [data-cursor-hover]';
 const TEXT_SELECTOR = 'input:not([type="submit"]):not([type="button"]):not([type="checkbox"]):not([type="radio"]), textarea, [contenteditable="true"]';
 
+function getContrastThemeForElement(element: HTMLElement | null): "light" | "dark" | "default" {
+  let current = element;
+
+  while (current && current !== document.body) {
+    const style = window.getComputedStyle(current);
+    const bg = style.backgroundColor;
+    if (bg && bg !== "rgba(0, 0, 0, 0)" && bg !== "transparent") {
+      const match = bg.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*[\d.]+)?\)/i);
+      if (match) {
+        const r = Number(match[1]);
+        const g = Number(match[2]);
+        const b = Number(match[3]);
+        const luminance = (0.2126 * r + 0.7152 * g + 0.0722 * b) / 255;
+        return luminance > 0.58 ? "dark" : "light";
+      }
+
+      if (bg.startsWith("var(")) {
+        return "light";
+      }
+    }
+
+    current = current.parentElement;
+  }
+
+  return "default";
+}
+
 export default function CustomCursor() {
   const rootRef = useRef<HTMLDivElement>(null);
   const dotRef = useRef<HTMLDivElement>(null);
@@ -58,6 +85,9 @@ export default function CustomCursor() {
     function handlePointerOver(event: PointerEvent) {
       const target = event.target as HTMLElement | null;
       if (!target) return;
+
+      const theme = getContrastThemeForElement(target);
+      root!.dataset.theme = theme;
 
       if (target.closest(TEXT_SELECTOR)) {
         root!.dataset.state = "text";

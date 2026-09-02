@@ -324,7 +324,13 @@ export const StaggeredMenu = ({
       if (!btn) return;
       colorTweenRef.current?.kill();
       if (changeMenuColorOnOpen) {
-        const targetColor = opening ? openMenuButtonColor : menuButtonColor;
+        let targetColor: string;
+        if (isDarkTheme) {
+          // In dark mode: dark text when opening (white background), white text when closing
+          targetColor = opening ? "#111112" : "#ffffff";
+        } else {
+          targetColor = opening ? openMenuButtonColor : menuButtonColor;
+        }
         colorTweenRef.current = gsap.to(btn, {
           color: targetColor,
           delay: 0.18,
@@ -332,22 +338,31 @@ export const StaggeredMenu = ({
           ease: "power2.out",
         });
       } else {
-        gsap.set(btn, { color: menuButtonColor });
+        const color = isDarkTheme ? "#ffffff" : menuButtonColor;
+        gsap.set(btn, { color });
       }
     },
-    [openMenuButtonColor, menuButtonColor, changeMenuColorOnOpen],
+    [openMenuButtonColor, menuButtonColor, changeMenuColorOnOpen, isDarkTheme],
   );
 
   useEffect(() => {
     if (toggleBtnRef.current) {
       if (changeMenuColorOnOpen) {
-        const targetColor = openRef.current ? openMenuButtonColor : menuButtonColor;
+        let targetColor: string;
+        if (isDarkTheme) {
+          // In dark mode: dark text when opening (white background), white text when closing
+          targetColor = openRef.current ? "#111112" : "#ffffff";
+        } else {
+          targetColor = openRef.current ? openMenuButtonColor : menuButtonColor;
+        }
+        gsap.set(toggleBtnRef.current, { color: targetColor });
         gsap.set(toggleBtnRef.current, { color: targetColor });
       } else {
-        gsap.set(toggleBtnRef.current, { color: menuButtonColor });
+        const color = isDarkTheme ? "#ffffff" : menuButtonColor;
+        gsap.set(toggleBtnRef.current, { color });
       }
     }
-  }, [changeMenuColorOnOpen, menuButtonColor, openMenuButtonColor]);
+  }, [changeMenuColorOnOpen, menuButtonColor, openMenuButtonColor, isDarkTheme]);
 
   const animateText = useCallback((opening: boolean) => {
     const inner = textInnerRef.current;

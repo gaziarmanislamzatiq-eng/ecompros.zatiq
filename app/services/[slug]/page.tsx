@@ -34,7 +34,7 @@ export async function generateMetadata({ params }: ServicePageProps): Promise<Me
 
   if (!service) {
     return {
-      title: "Service not found | Ecom ProDesk",
+      title: "Service not found |EcomPros",
     };
   }
 

@@ -23,7 +23,7 @@ export default function ServiceCard({ item }: { item: ServiceItem }) {
   return (
     <div
       ref={ref}
-      className="service-card group relative flex items-center gap-3 rounded-[1.35rem] border border-black/[0.06] bg-white p-3.5 shadow-[0_1px_2px_rgba(17,17,18,0.04)] transition-shadow duration-300 will-change-transform hover:shadow-[0_18px_40px_-16px_rgba(76,29,149,0.35)]"
+      className="service-card group relative flex items-center gap-3 rounded-[1.35rem] border border-black/[0.06] bg-white p-3.5 shadow-[0_1px_2px_rgba(17,17,18,0.04)] transition-all duration-500 ease-out will-change-transform hover:shadow-[0_18px_40px_-16px_rgba(76,29,149,0.35)]"
       style={initialGlareStyle}
     >
       <span

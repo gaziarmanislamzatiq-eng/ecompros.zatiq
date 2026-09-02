@@ -68,7 +68,7 @@ export const services = [
     homeDescription:
       "Marketing pages, product sites, dashboards, and responsive front-end builds shaped around one clear action.",
     meta: {
-      title: "Web Design and Development | Ecom ProDesk Services",
+      title: "Web Design and Development |EcomPros Services",
       description:
         "Ecom ProDesk web design and development services for startup websites, web apps, dashboards, CMS content systems, SEO foundations, analytics, DevOps, and launch support.",
     },
@@ -171,7 +171,7 @@ export const services = [
     relatedPortfolioSlugs: ["tapcon", "solarstock", "oneplatemeal"],
     faqs: [
       {
-        question: "Can Ecom ProDesk handle both design and development?",
+        question: "CanEcomPros handle both design and development?",
         answer:
           "Yes. The work is planned as one product surface, so the visual direction, responsive behavior, content structure, and implementation stay connected.",
       },
@@ -197,7 +197,7 @@ export const services = [
     homeDescription:
       "Interface logic, architecture-facing UX, and implementation support for products that need to feel coherent early.",
     meta: {
-      title: "Software Design and Development | Ecom ProDesk Services",
+      title: "Software Design and Development |EcomPros Services",
       description:
         "Software design and development services for product UX, application architecture, backend systems, dashboards, APIs, databases, authentication, permissions, and mobile app planning.",
     },
@@ -301,7 +301,7 @@ export const services = [
     relatedPortfolioSlugs: ["tapcon", "solarstock", "oneplatemeal"],
     faqs: [
       {
-        question: "Can Ecom ProDesk build an MVP from a rough idea?",
+        question: "CanEcomPros build an MVP from a rough idea?",
         answer:
           "Yes, as long as the first release can be framed around a clear workflow, user role, or operational job.",
       },
@@ -327,7 +327,7 @@ export const services = [
     homeDescription:
       "Launch loops, product explainers, and short motion systems that help a young company show momentum without overexplaining.",
     meta: {
-      title: "Motion Video Design | Ecom ProDesk Services",
+      title: "Motion Video Design |EcomPros Services",
       description:
         "Motion video design services for product explainers, launch loops, podcast editing, captions, motion graphics, social cutdowns, and campaign video finishing.",
     },
@@ -429,7 +429,7 @@ export const services = [
     ],
     faqs: [
       {
-        question: "Can Ecom ProDesk edit existing footage?",
+        question: "CanEcomPros edit existing footage?",
         answer:
           "Yes. Existing product captures, interviews, podcasts, commercials, and social clips can be shaped into finished edits.",
       },
@@ -455,7 +455,7 @@ export const services = [
     homeDescription:
       "Practical security surfaces, checklists, and helper tooling that make trust work easier to understand and maintain.",
     meta: {
-      title: "Cybersecurity Helper | Ecom ProDesk Services",
+      title: "Cybersecurity Helper |EcomPros Services",
       description:
         "Cybersecurity helper services for startup trust surfaces, security UX, authentication review, permission models, checklist systems, policy pages, and incident-ready documentation.",
     },
@@ -563,7 +563,7 @@ export const services = [
           "Yes. It often works best when paired with product development, because auth, roles, admin tooling, and launch checklists can be improved during the build.",
       },
       {
-        question: "Can Ecom ProDesk write policy pages?",
+        question: "CanEcomPros write policy pages?",
         answer:
           "Ecom ProDesk can structure and draft readable web content for trust and policy surfaces. Legal review should still happen where legal obligations apply.",
       },
@@ -579,7 +579,7 @@ export const services = [
     homeDescription:
       "Shared type, color, UI, and content decisions that keep the website, product, and launch assets speaking the same language.",
     meta: {
-      title: "Brand-Ready Systems | Ecom ProDesk Services",
+      title: "Brand-Ready Systems |EcomPros Services",
       description:
         "Brand-ready systems for startups including visual identity foundations, design tokens, UI kits, content voice, launch assets, presentation templates, and social creative systems.",
     },
@@ -687,7 +687,7 @@ export const services = [
           "Yes. The strongest version connects directly to website and product implementation so the system is not left as a separate design file.",
       },
       {
-        question: "Can Ecom ProDesk create social templates?",
+        question: "CanEcomPros create social templates?",
         answer:
           "Yes. Social posts, thumbnails, campaign visuals, and editable Figma templates can be included in the brand-ready system.",
       },
@@ -703,7 +703,7 @@ export const services = [
     homeDescription:
       "Positioning, messaging, visual identity, SEO, and campaign systems that help a young company get found and understood.",
     meta: {
-      title: "Marketing, Branding and SEO | Ecom ProDesk Services",
+      title: "Marketing, Branding and SEO |EcomPros Services",
       description:
         "Marketing, branding, and SEO services for startup positioning, landing page messaging, keyword research, on-page SEO, local SEO, paid social, reporting, and campaign content.",
     },
@@ -813,7 +813,7 @@ export const services = [
           "Yes. SEO foundations are strongest when metadata, headings, content structure, performance, and landing page copy are handled during the build.",
       },
       {
-        question: "Can Ecom ProDesk support local SEO?",
+        question: "CanEcomPros support local SEO?",
         answer:
           "Yes. Local service pages, business profile direction, review signals, and location content can be included when local search matters.",
       },
@@ -904,12 +904,12 @@ export const servicesFaqs: ServiceFAQ[] = [
       "Yes. Most startup work combines at least two services, such as web plus brand, software plus security, or marketing plus SEO.",
   },
   {
-    question: "Do we need a finished brief before contacting Ecom ProDesk?",
+    question: "Do we need a finished brief before contactingEcomPros?",
     answer:
       "No. A rough product idea, current site, feature list, or launch problem is enough to start scoping the right service path.",
   },
   {
-    question: "Does Ecom ProDesk publish pricing on the site?",
+    question: "DoesEcomPros publish pricing on the site?",
     answer:
       "Not yet. Scope depends on the surface, content readiness, integrations, and launch deadline, so the booking flow starts with a project note.",
   },

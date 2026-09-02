@@ -6,11 +6,12 @@ import ThemeLogo from "@/components/ui/ThemeLogo";
 import { brand } from "@/lib/brand";
 
 const footerLinks = [
-  { href: "/services", label: "Services" },
-  { href: "/portfolio", label: "Portfolio" },
-  { href: "/team", label: "Team" },
-  { href: "/#workbench", label: "Workbench" },
-  { href: "/#booking", label: "Book call" },
+  { href: "/#about", label: "About" },
+  { href: "/pricing", label: "Pricing" },
+  { href: "/#enterprise", label: "Enterprise" },
+  { href: "/#booking", label: "Contact" },
+  { href: "/terms", label: "Terms" },
+  { href: "/privacy", label: "Privacy" },
 ];
 
 const socialLinks = [
@@ -101,21 +102,21 @@ export default function SiteFooter() {
       <div className="site-footer__inner">
         <div className="site-footer__top">
           <p className="site-footer__statement" data-cinematic="clip">
-            Keep every part of your ecommerce business moving.
+            Human-powered ecommerce operations. 24/7.
           </p>
 
           <div className="site-footer__aside" data-cinematic="rise" data-cinematic-delay="1">
             <p className="site-footer__note">
-              Ecom ProDesk brings marketplace operations, order fulfillment,
+              EcomPros brings marketplace operations, order fulfillment,
               customer support, creative, marketing, and ecommerce development
               into one practical service partner.
             </p>
 
-            <div className="site-footer__chips" aria-label="Ecom ProDesk service focus">
-              <span>Marketplace operations</span>
-              <span>Order fulfillment</span>
-              <span>Customer support</span>
-              <span>Ecommerce growth</span>
+            <div className="site-footer__chips" aria-label="EcomPros service focus">
+              <span>Operations</span>
+              <span>Creative</span>
+              <span>Marketing</span>
+              <span>Technology</span>
             </div>
 
             <Button href="/#booking" size="sm" className="site-footer__cta">
@@ -154,7 +155,10 @@ export default function SiteFooter() {
             ))}
           </nav>
 
-          <p className="site-footer__credit">&copy; {year} {brand.name}.</p>
+          
+        </div>
+        <div className="site-footer__copyright text-center" data-cinematic="rise" data-cinematic-delay="3" >
+          &copy; {new Date().getFullYear()} {brand.name}. All rights reserved.
         </div>
       </div>
     </footer>

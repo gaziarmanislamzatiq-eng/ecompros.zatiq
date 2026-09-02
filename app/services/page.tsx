@@ -13,7 +13,7 @@ import {
   servicesFaqs,
 } from "@/lib/services";
 
-const pageTitle = "Services | Ecom ProDesk";
+const pageTitle = "Services |EcomPros";
 const pageDescription =
   "Ecom ProDesk services for startup founders: web design and development, software product development, motion video design, cybersecurity helper work, brand-ready systems, and marketing, branding and SEO.";
 
@@ -64,7 +64,7 @@ export default function ServicesPage() {
           </div>
           <div className="services-hero__aside" data-cinematic="rise" data-cinematic-delay="1">
             <p>
-              Ecom ProDesk connects the public website, product build, launch motion, brand
+             EcomPros connects the public website, product build, launch motion, brand
               system, security helper work, and growth surface so founders do not have
               to stitch the work together later.
             </p>
@@ -226,7 +226,7 @@ export default function ServicesPage() {
             Bring the rough brief. Leave with a route.
           </h2>
           <p data-cinematic="rise" data-cinematic-delay="1">
-            Send the product, website, campaign, or security problem. Ecom ProDesk will help
+            Send the product, website, campaign, or security problem.EcomPros will help
             sort the right service path before the work expands.
           </p>
           <div className="services-cta__actions" data-cinematic="rise" data-cinematic-delay="2">

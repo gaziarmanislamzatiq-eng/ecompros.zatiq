@@ -266,7 +266,7 @@
 .dark .sm-scroll-toggle {
   border-color: color-mix(in oklch, var(--color-ink) 36%, transparent);
   background: color-mix(in oklch, var(--color-paper-2) 72%, transparent);
-  color: var(--color-ink);
+  color: white;
   box-shadow: 0 0 0 1px color-mix(in oklch, var(--color-ink) 18%, transparent);
 }
 
@@ -278,6 +278,10 @@
 .staggered-menu-wrapper[data-open] .sm-toggle {
   border-color: rgb(23 17 12 / 14%);
   background: rgb(255 255 255 / 68%);
+}
+
+[data-theme="dark"] .staggered-menu-wrapper[data-open] .sm-toggle {
+  color: #111112;
 }
 
 .sm-toggle-textWrap {
@@ -571,6 +575,12 @@
     pointer-events: auto;
     transform: translateY(0);
     visibility: visible;
+  }
+
+  .staggered-menu-wrapper:not([data-scrolled]) .sm-scroll-toggle {
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
   }
 
   .staggered-menu-panel,

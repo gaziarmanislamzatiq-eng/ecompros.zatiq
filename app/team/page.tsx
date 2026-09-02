@@ -5,9 +5,9 @@ import TeamProfileExplorer from "@/components/team/TeamProfileExplorer";
 import { brand } from "@/lib/brand";
 import { teamMembers } from "@/lib/team";
 
-const pageTitle = "Team | Ecom ProDesk";
+const pageTitle = "Team |EcomPros";
 const pageDescription =
-  "Meet the Ecom ProDesk founding and leadership team behind software engineering, cybersecurity, motion, operations, and growth.";
+  "Meet theEcomPros founding and leadership team behind software engineering, cybersecurity, motion, operations, and growth.";
 
 export const metadata: Metadata = {
   title: pageTitle,
@@ -51,7 +51,7 @@ export default function TeamPage() {
               Team roster
             </p>
             <h1 className="team-hero__title" data-cinematic="clip" id="team-title">
-              The people behind Ecom ProDesk.
+              The people behindEcomPros.
             </h1>
           </div>
           <p className="team-hero__copy" data-cinematic="rise" data-cinematic-delay="1">

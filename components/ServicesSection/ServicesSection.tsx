@@ -11,6 +11,31 @@ import MagneticButton from "./MagneticButton";
 
 const AmbientOrb = dynamic(() => import("./AmbientOrb"), { ssr: false });
 
+const animateTextReplacement = (element: HTMLSpanElement | null, nextText: string) => {
+  if (!element) return;
+
+  gsap.timeline({ defaults: { ease: "power2.inOut" } })
+    .to(element, {
+      y: -12,
+      opacity: 0,
+      duration: 0.18,
+      onComplete: () => {
+        element.textContent = nextText;
+      },
+    })
+    .fromTo(
+      element,
+      { y: 16, opacity: 0 },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 0.28,
+        ease: "power3.out",
+        clearProps: "transform, opacity",
+      }
+    );
+};
+
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
@@ -24,10 +49,12 @@ export default function ServicesSection() {
   const leftPanelRef = useRef<HTMLDivElement | null>(null);
   const rightPanelRef = useRef<HTMLDivElement | null>(null);
   const contentRef = useRef<HTMLDivElement | null>(null);
+  const contentGridRef = useRef<HTMLDivElement | null>(null);
   const bannerRef = useRef<HTMLDivElement | null>(null);
   const highlightRef = useRef<HTMLDivElement | null>(null);
   const slideRef = useRef<HTMLDivElement | null>(null);
   const tabButtonRefs = useRef<Record<string, HTMLButtonElement | null>>({});
+  const tabLabelRefs = useRef<Record<string, HTMLSpanElement | null>>({});
 
   const activeTabData =
     SERVICE_TABS.find((tab) => tab.id === activeTab) ?? SERVICE_TABS[0];
@@ -102,19 +129,35 @@ export default function ServicesSection() {
 
   // Re-run the card stagger whenever the tab content swaps.
   useEffect(() => {
-    if (!contentRef.current) return;
-    const cards = contentRef.current.querySelectorAll(".service-card");
-    gsap.fromTo(
-      cards,
-      { y: 18, opacity: 0 },
+    const list = contentGridRef.current;
+    if (!list) return;
+
+    const cards = list.querySelectorAll(".service-card");
+
+    const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+
+    tl.fromTo(
+      list,
+      { opacity: 0, y: 10, filter: "blur(6px)" },
       {
-        y: 0,
         opacity: 1,
-        duration: 0.45,
-        stagger: 0.025,
-        ease: "power2.out",
-        clearProps: "transform",
+        y: 0,
+        filter: "blur(0px)",
+        duration: 0.42,
+        clearProps: "filter, transform",
       }
+    ).fromTo(
+      cards,
+      { opacity: 0, y: 16, scale: 0.98 },
+      {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        duration: 0.52,
+        stagger: 0.04,
+        clearProps: "transform, opacity",
+      },
+      "-=0.18"
     );
   }, [activeTab]);
 
@@ -136,6 +179,35 @@ export default function ServicesSection() {
       resizeObserver.disconnect();
       window.removeEventListener("resize", checkOverflow);
     };
+  }, [activeTab]);
+
+  useLayoutEffect(() => {
+    SERVICE_TABS.forEach((tab) => {
+      const button = tabButtonRefs.current[tab.id];
+      const label = tabLabelRefs.current[tab.id];
+      if (!button || !label) return;
+
+      const isActive = tab.id === activeTab;
+      gsap.to(button, {
+        x: isActive ? 0 : 0,
+        opacity: isActive ? 1 : 0.8,
+        duration: 0.3,
+        ease: "power2.out",
+      });
+
+      gsap.fromTo(
+        label,
+        { y: isActive ? 16 : 0, opacity: isActive ? 0 : 1, filter: "blur(5px)" },
+        {
+          y: 0,
+          opacity: 1,
+          filter: "blur(0px)",
+          duration: 0.45,
+          ease: "power3.out",
+          clearProps: "filter",
+        }
+      );
+    });
   }, [activeTab]);
 
   return (
@@ -166,14 +238,71 @@ export default function ServicesSection() {
                     }}
                     role="tab"
                     aria-selected={isActive}
-                    onClick={() => setActiveTab(tab.id)}
+                    onClick={() => {
+                      setActiveTab(tab.id);
+                      const button = tabButtonRefs.current[tab.id];
+                      const label = tabLabelRefs.current[tab.id];
+                      if (!button || !label) return;
+
+                      animateTextReplacement(label, tab.label);
+
+                      gsap.fromTo(
+                        button,
+                        { scale: 0.99 },
+                        {
+                          scale: 1,
+                          duration: 0.28,
+                          ease: "power2.out",
+                        }
+                      );
+                    }}
+                    onMouseEnter={(event) => {
+                      const target = event.currentTarget;
+                      const label = tabLabelRefs.current[tab.id];
+                      if (!label || target.getAttribute("aria-selected") === "true") return;
+
+                      gsap.to(target, {
+                        x: 6,
+                        duration: 0.2,
+                        ease: "power2.out",
+                      });
+                      gsap.to(label, {
+                        x: 6,
+                        duration: 0.2,
+                        ease: "power2.out",
+                      });
+                    }}
+                    onMouseLeave={(event) => {
+                      const target = event.currentTarget;
+                      const label = tabLabelRefs.current[tab.id];
+                      if (!label || target.getAttribute("aria-selected") === "true") return;
+
+                      gsap.to(target, {
+                        x: 0,
+                        duration: 0.25,
+                        ease: "power2.out",
+                      });
+                      gsap.to(label, {
+                        x: 0,
+                        duration: 0.25,
+                        ease: "power2.out",
+                      });
+                    }}
                     className={`relative z-[1] w-full text-left font-semibold leading-[0.9] tracking-[-0.06em] text-white transition-all duration-300 ${
                       isActive
                         ? "opacity-100"
                         : "opacity-80 hover:opacity-100"
                     }`}
+                    style={{
+                      transformOrigin: "left center",
+                    }}
                   >
-                    <span className="block text-[clamp(2.2rem,2.8vw,4.4rem)]">
+                    <span
+                      ref={(node) => {
+                        tabLabelRefs.current[tab.id] = node;
+                      }}
+                      className="block text-[clamp(2.2rem,2.8vw,4.4rem)]"
+                    >
                       {tab.label}
                     </span>
                   </button>
@@ -198,7 +327,11 @@ export default function ServicesSection() {
 
               {isOverflowing ? (
                 <div
-                  ref={slideRef}
+                  key={activeTab}
+                  ref={(node) => {
+                    slideRef.current = node;
+                    contentGridRef.current = node;
+                  }}
                   className="mt-8 flex min-w-full gap-3 overflow-x-auto pb-2 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
                   style={{ scrollBehavior: "auto", scrollSnapType: "x proximity" }}
                 >
@@ -211,7 +344,13 @@ export default function ServicesSection() {
                   )}
                 </div>
               ) : (
-                <div className="mt-8 grid grid-cols-1 gap-x-10 gap-y-6 sm:grid-cols-2 xl:grid-cols-2">
+                <div
+                  key={activeTab}
+                  ref={(node) => {
+                    contentGridRef.current = node;
+                  }}
+                  className="mt-8 grid grid-cols-1 gap-x-10 gap-y-6 sm:grid-cols-2 xl:grid-cols-2"
+                >
                   {activeTabData.groups.flatMap((group) =>
                     group.items.map((item) => <ServiceCard key={item.label} item={item} />)
                   )}

@@ -6,9 +6,9 @@ import HoleRevealButton from "@/components/pricing/HoleRevealButton";
 import PricingTabs from "@/components/pricing/PricingTabs";
 import { brand } from "@/lib/brand";
 
-const pageTitle = "Pricing Preview | Ecom ProDesk";
+const pageTitle = "Pricing Preview |EcomPros";
 const pageDescription =
-  "Monthly and long-term ecommerce operations pricing from Ecom ProDesk, scoped by order volume.";
+  "Monthly and long-term ecommerce operations pricing fromEcomPros, scoped by order volume.";
 
 export const metadata: Metadata = {
   title: pageTitle,
@@ -66,15 +66,18 @@ export default function PricingPage() {
 
       <section className="pricing-cta section section--tight" aria-labelledby="pricing-cta-title">
         <div className="section__inner pricing-cta__inner">
-          <h2 className="section__title" data-cinematic="clip" id="pricing-cta-title">
-            Ready to see the plan that fits.
-          </h2>
-          <p className="section__copy" data-cinematic="rise" data-cinematic-delay="1">
-            Walk through order volume, current gaps, and the tier that matches before
-            anything is booked.
-          </p>
-          <div data-cinematic="rise" data-cinematic-delay="2">
-            <HoleRevealButton className="btn btn--primary btn--lg" href="/#booking">
+          <div className="pricing-cta__copy" data-cinematic="rise">
+            <h2 className="section__title" id="pricing-cta-title">
+              Ready to see the plan that fits.
+            </h2>
+            <p className="section__copy">
+              Walk through order volume, current gaps, and the tier that matches before
+              anything is booked.
+            </p>
+          </div>
+
+          <div className="pricing-cta__action" data-cinematic="rise" data-cinematic-delay="2">
+            <HoleRevealButton className="btn btn--primary btn--lg pricing-cta__button" href="/#booking">
               Explore Plans
               <ArrowRight aria-hidden="true" size={18} />
             </HoleRevealButton>

@@ -6,16 +6,16 @@ import { brand } from "@/lib/brand";
 import { portfolioProjects, portfolioTabs } from "@/lib/portfolio";
 
 export const metadata: Metadata = {
-  title: "Portfolio | Ecom ProDesk",
+  title: "Portfolio |EcomPros",
   description:
-    "Selected Ecom ProDesk website, application, video editing, motion design, marketing, and SEO work across product systems and social-ready media.",
+    "SelectedEcomPros website, application, video editing, motion design, marketing, and SEO work across product systems and social-ready media.",
   alternates: {
     canonical: "/portfolio",
   },
   openGraph: {
-    title: "Portfolio | Ecom ProDesk",
+    title: "Portfolio |EcomPros",
     description:
-      "Selected Ecom ProDesk website, application, video editing, motion design, marketing, and SEO work across product systems and social-ready media.",
+      "SelectedEcomPros website, application, video editing, motion design, marketing, and SEO work across product systems and social-ready media.",
     url: "/portfolio",
     siteName: brand.name,
     images: [
@@ -31,9 +31,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Portfolio | Ecom ProDesk",
+    title: "Portfolio |EcomPros",
     description:
-      "Selected Ecom ProDesk website, application, video editing, motion design, marketing, and SEO work across product systems and social-ready media.",
+      "SelectedEcomPros website, application, video editing, motion design, marketing, and SEO work across product systems and social-ready media.",
     images: ["/portfolio/web/tapcon/cover.png"],
   },
 };

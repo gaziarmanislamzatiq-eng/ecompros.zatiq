@@ -19,7 +19,7 @@ const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ["latin"],
 });
 
-const siteTitle = "Ecommerce Operations & Marketplace Support | Ecom ProDesk";
+const siteTitle = "Ecommerce Operations & Marketplace Support |EcomPros";
 const siteKeywords = [
   "ecommerce operations",
   "marketplace management",
