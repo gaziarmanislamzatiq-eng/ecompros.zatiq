@@ -1,6 +1,5 @@
 "use client";
 
-import emailjs from "@emailjs/browser";
 import { ArrowRight, CheckCircle2, LoaderCircle } from "lucide-react";
 import { useRef, useState, type CSSProperties, type FormEvent, type PointerEvent } from "react";
 
@@ -10,13 +9,6 @@ import { monthlyPlans, periodLabels, periodOrder } from "@/lib/pricing";
 const PLACEHOLDER_BOOKING_INBOX = "gazi.arman.islam.zatiq@gmail.com";
 const bookingOptions = [...monthlyPlans.map((plan) => plan.name), "Not sure yet"];
 const durationOptions = periodOrder.map((key) => periodLabels[key]);
-
-const EMAILJS_SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
-const EMAILJS_TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
-const EMAILJS_PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
-const EMAILJS_CONFIGURED = Boolean(
-  EMAILJS_SERVICE_ID && EMAILJS_TEMPLATE_ID && EMAILJS_PUBLIC_KEY,
-);
 
 type FormData = {
   budget: string;
@@ -100,28 +92,27 @@ export default function BookingForm() {
       return;
     }
 
-    if (!EMAILJS_CONFIGURED) {
-      setStatus("error");
-      return;
-    }
-
     setStatus("sending");
 
     try {
-      await emailjs.send(
-        EMAILJS_SERVICE_ID!,
-        EMAILJS_TEMPLATE_ID!,
-        {
-          from_name: formData.name.trim(),
-          from_email: formData.email.trim(),
-          company: formData.company.trim() || "Not provided",
+      const response = await fetch("/api/booking", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: formData.name.trim(),
+          email: formData.email.trim(),
+          company: formData.company.trim(),
           service: formData.service,
           duration: formData.duration,
-          budget: formData.budget.trim() || "Not provided",
+          budget: formData.budget.trim(),
           message: formData.message.trim(),
-        },
-        { publicKey: EMAILJS_PUBLIC_KEY! },
-      );
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Request failed");
+      }
+
       setStatus("success");
       setFormData(initialFormData);
     } catch {
@@ -280,11 +271,6 @@ export default function BookingForm() {
             </>
           ) : status === "sending" ? (
             "Sending..."
-          ) : status === "error" && !EMAILJS_CONFIGURED ? (
-            <>
-              Email sending isn&apos;t connected yet.{" "}
-              <a href={buildMailtoUrl(formData)}>Email us directly</a> instead.
-            </>
           ) : status === "error" && Object.keys(errors).length === 0 ? (
             <>
               Something went wrong sending that.{" "}

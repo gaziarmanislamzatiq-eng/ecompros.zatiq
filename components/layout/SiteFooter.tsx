@@ -1,3 +1,6 @@
+"use client";
+
+import { useRef, type PointerEvent } from "react";
 import Link from "next/link";
 import { ArrowRight, BriefcaseBusiness } from "lucide-react";
 
@@ -96,9 +99,34 @@ function YoutubeIcon() {
 
 export default function SiteFooter() {
   const year = new Date().getFullYear();
+  const footerRef = useRef<HTMLElement>(null);
+
+  const handlePointerMove = (event: PointerEvent<HTMLElement>) => {
+    if (event.pointerType !== "mouse") return;
+    const el = footerRef.current;
+    if (!el) return;
+    const bounds = el.getBoundingClientRect();
+    el.style.setProperty("--torch-x", `${event.clientX - bounds.left}px`);
+    el.style.setProperty("--torch-y", `${event.clientY - bounds.top}px`);
+  };
+
+  const handlePointerEnter = (event: PointerEvent<HTMLElement>) => {
+    if (event.pointerType !== "mouse") return;
+    footerRef.current?.setAttribute("data-torch-active", "true");
+  };
+
+  const handlePointerLeave = () => {
+    footerRef.current?.removeAttribute("data-torch-active");
+  };
 
   return (
-    <footer className="site-footer">
+    <footer
+      className="site-footer"
+      onPointerEnter={handlePointerEnter}
+      onPointerLeave={handlePointerLeave}
+      onPointerMove={handlePointerMove}
+      ref={footerRef}
+    >
       <div className="site-footer__inner">
         <div className="site-footer__top">
           <p className="site-footer__statement" data-cinematic="clip">
@@ -158,7 +186,7 @@ export default function SiteFooter() {
           
         </div>
         <div className="site-footer__copyright text-center" data-cinematic="rise" data-cinematic-delay="3" >
-          &copy; {new Date().getFullYear()} {brand.name}. All rights reserved.
+          &copy; {year} {brand.name}. All rights reserved.
         </div>
       </div>
     </footer>

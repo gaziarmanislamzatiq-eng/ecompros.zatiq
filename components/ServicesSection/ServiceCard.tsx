@@ -23,17 +23,17 @@ export default function ServiceCard({ item }: { item: ServiceItem }) {
   return (
     <div
       ref={ref}
-      className="service-card group relative flex items-center gap-3 rounded-[1.35rem] border border-black/[0.06] bg-white p-3.5 shadow-[0_1px_2px_rgba(17,17,18,0.04)] transition-all duration-500 ease-out will-change-transform hover:shadow-[0_18px_40px_-16px_rgba(76,29,149,0.35)]"
+      className="service-card group relative flex items-center gap-3 rounded-[1.35rem] border border-[var(--color-rule)] bg-[var(--color-paper)] p-3.5 shadow-[0_1px_2px_rgba(17,17,18,0.04)] transition-all duration-500 ease-out will-change-transform hover:shadow-[0_18px_40px_-16px_rgba(76,29,149,0.35)] dark:border-[var(--color-rule)]"
       style={initialGlareStyle}
     >
       <span
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 rounded-[1.35rem] opacity-0 transition-opacity duration-300 group-hover:opacity-100 bg-[radial-gradient(220px_circle_at_calc(var(--glare-x)*1%)_calc(var(--glare-y)*1%),rgba(234,88,12,0.14),transparent_70%)]"
       />
-      <span className="relative z-[1] flex h-9 w-9 shrink-0 items-center justify-center rounded-[0.8rem] bg-orange-50 text-orange-700 transition-colors duration-300 group-hover:bg-orange-600 group-hover:text-white">
+      <span className="relative z-[1] flex h-9 w-9 shrink-0 items-center justify-center rounded-[0.8rem] bg-[var(--color-accent-soft)] text-[var(--color-brand-accent)] transition-colors duration-300 group-hover:bg-[var(--color-brand-accent)] group-hover:text-white">
         <Icon size={17} strokeWidth={1.75} />
       </span>
-      <span className="relative z-[1] flex-1 text-[13.5px] font-medium leading-[1.3] text-neutral-800">
+      <span className="relative z-[1] flex-1 text-[13.5px] font-medium leading-[1.3] text-[var(--color-ink)]">
         {item.label}
       </span>
     </div>

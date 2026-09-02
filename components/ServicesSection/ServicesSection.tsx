@@ -214,13 +214,25 @@ export default function ServicesSection() {
     <section
       ref={sectionRef}
       id="marketplace-operations"
-      className="relative overflow-hidden bg-[#f2f0ee] py-12 md:py-16"
+      className="relative overflow-hidden bg-[var(--color-paper-2)] py-12 md:py-16"
     >
       <div className="relative mx-auto max-w-[1500px] px-2 md:px-6 lg:px-8">
+        <header ref={headerRef} className="mb-10 max-w-4xl">
+          <p className="text-[0.72rem] font-semibold uppercase tracking-[0.28em] text-[var(--color-ink-soft)]">
+            WHAT WE DO
+          </p>
+          <h2 className="mt-4 font-serif text-[clamp(2.2rem,4vw,4.5rem)] italic leading-[0.94] tracking-[-0.05em] text-[var(--color-ink)]">
+            Your Ecommerce Team, Fully Taken Care Of.
+          </h2>
+          <p className="mt-4 max-w-2xl text-base text-[var(--color-ink-soft)] md:text-lg">
+            Everything you need to keep your ecommerce business running and growing.
+          </p>
+        </header>
+
         <div className="grid grid-cols-1 overflow-hidden bg-transparent lg:grid-cols-[0.95fr_1.2fr]">
           <div
             ref={leftPanelRef}
-            className="relative min-h-[620px] overflow-hidden bg-[var(--color-brand-accent)] px-5 py-10 md:px-8 lg:px-10"
+            className="relative h-auto overflow-hidden rounded-[50px] bg-[var(--color-brand-accent)] px-5 py-10 md:px-8 lg:px-10"
           >
             <AmbientOrb />
             <nav
@@ -288,7 +300,7 @@ export default function ServicesSection() {
                         ease: "power2.out",
                       });
                     }}
-                    className={`relative z-[1] w-full text-left font-semibold leading-[0.9] tracking-[-0.06em] text-white transition-all duration-300 ${
+                    className={`relative z-[1] w-full text-left font-semibold uppercase leading-[0.9] tracking-[-0.06em] text-white transition-all duration-300 ${
                       isActive
                         ? "opacity-100"
                         : "opacity-80 hover:opacity-100"
@@ -311,16 +323,16 @@ export default function ServicesSection() {
             </nav>
           </div>
 
-          <div ref={rightPanelRef} className="bg-[#f4f1ee] px-5 py-8 md:px-8 md:py-10 lg:px-10 lg:py-12">
+          <div ref={rightPanelRef} className="bg-[var(--color-paper)] px-5 py-8 md:px-8 md:py-10 lg:px-10 lg:py-12">
             <div className="max-w-[980px]">
-              <div className="flex items-center gap-3 text-[#111112]">
+              <div className="flex items-center gap-3 text-[var(--color-ink)]">
                 <h3 className="font-serif text-[clamp(2rem,2.2vw,3rem)] italic leading-[1.15] tracking-[-0.04em]">
                   {activeTabData.label}
                 </h3>
-                <span className="font-serif text-[clamp(1.4rem,1.8vw,2.2rem)] italic leading-[1.15] text-[#111112]">
+                <span className="font-serif text-[clamp(1.4rem,1.8vw,2.2rem)] italic leading-[1.15] text-[var(--color-ink)]">
                   :
                 </span>
-                <span className="font-serif text-[clamp(1.4rem,1.8vw,2.2rem)] italic leading-[1.15] text-[#111112]">
+                <span className="font-serif text-[clamp(1.4rem,1.8vw,2.2rem)] italic leading-[1.15] text-[var(--color-ink)]">
                   {activeTabData.eyebrow.replace(/^\d+\s*[—-]\s*/, "")}
                 </span>
               </div>

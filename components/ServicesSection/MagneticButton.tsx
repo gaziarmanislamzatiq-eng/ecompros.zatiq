@@ -61,7 +61,7 @@ export default function MagneticButton({
   const styles =
     variant === "primary"
       ? "bg-orange-600 text-white hover:bg-orange-700"
-      : "bg-white text-[#111112] ring-1 ring-inset ring-black/10 hover:bg-orange-50 hover:ring-orange-300";
+      : "bg-[var(--color-paper)] text-[var(--color-ink)] ring-1 ring-inset ring-[var(--color-rule)] hover:bg-[var(--color-accent-soft)] hover:ring-[var(--color-brand-accent)]";
 
   return (
     <a
