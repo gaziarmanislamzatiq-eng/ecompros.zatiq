@@ -105,7 +105,7 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
           <div className="service-detail-hero__aside" data-cinematic="rise" data-cinematic-delay="1">
             <p>{service.summary}</p>
             <div className="service-detail-hero__actions">
-              <Button href="/#booking" size="lg">
+              <Button href="/booking" size="lg">
                 Book this service
                 <ArrowRight aria-hidden="true" size={18} />
               </Button>
@@ -154,7 +154,7 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
               The sections on the right break the service into capabilities,
               deliverables, delivery rhythm, and handoff details.
             </p>
-            <Button href="/#booking" size="md" variant="secondary">
+            <Button href="/booking" size="md" variant="secondary">
               Discuss scope
               <ArrowRight aria-hidden="true" size={16} />
             </Button>

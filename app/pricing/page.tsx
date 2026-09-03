@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import ScrollCinematics from "@/components/motion/ScrollCinematics";
 import HoleRevealButton from "@/components/pricing/HoleRevealButton";
 import PricingTabs from "@/components/pricing/PricingTabs";
+import PricingHeroTitle from "@/components/pricing/PricingHeroTitle";
 import { brand } from "@/lib/brand";
 
 const pageTitle = "Pricing Preview |EcomPros";
@@ -36,9 +37,7 @@ export default function PricingPage() {
           <p className="section__label" data-cinematic="rise">
             Pricing preview
           </p>
-          <h1 className="pricing-hero__title" data-cinematic="clip" id="pricing-title">
-            Choose the support your business needs.
-          </h1>
+          <PricingHeroTitle title="Choose the support your business needs." />
         </div>
       </section>
 
@@ -77,7 +76,7 @@ export default function PricingPage() {
           </div>
 
           <div className="pricing-cta__action" data-cinematic="rise" data-cinematic-delay="2">
-            <HoleRevealButton className="btn btn--primary btn--lg pricing-cta__button" href="/#booking">
+            <HoleRevealButton className="btn btn--primary btn--lg pricing-cta__button" href="/booking">
               Explore Plans
               <ArrowRight aria-hidden="true" size={18} />
             </HoleRevealButton>

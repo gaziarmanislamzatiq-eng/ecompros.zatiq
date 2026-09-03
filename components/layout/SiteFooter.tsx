@@ -12,7 +12,7 @@ const footerLinks = [
   { href: "/#about", label: "About" },
   { href: "/pricing", label: "Pricing" },
   { href: "/#enterprise", label: "Enterprise" },
-  { href: "/#booking", label: "Contact" },
+  { href: "/booking", label: "Booking" },
   { href: "/terms", label: "Terms" },
   { href: "/privacy", label: "Privacy" },
 ];
@@ -147,7 +147,7 @@ export default function SiteFooter() {
               <span>Technology</span>
             </div>
 
-            <Button href="/#booking" size="sm" className="site-footer__cta">
+            <Button href="/booking" size="sm" className="site-footer__cta">
               Book call
               <ArrowRight aria-hidden="true" size={16} />
             </Button>

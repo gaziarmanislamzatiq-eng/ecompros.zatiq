@@ -544,13 +544,9 @@ export const StaggeredMenu = ({
           <Link href="/services">Services</Link>
           <Link href="/portfolio">Portfolio</Link>
           <Link href="/pricing">Pricing</Link>
-          <Link href="/team">Team</Link>
-          <Link href="/#booking">Contact</Link>
+          <Link href="/booking">Booking</Link>
         </nav>
         <div className="sm-desktop-actions">
-          <button className="sm-action-button" type="button" aria-label="Search">
-            <span className="sm-search-icon" aria-hidden="true" />
-          </button>
           <button
             className="sm-action-button"
             type="button"
@@ -559,15 +555,7 @@ export const StaggeredMenu = ({
           >
             <span className="sm-moon-icon" aria-hidden="true" />
           </button>
-          <button className="sm-action-button" type="button" aria-label="Open services overview">
-            <span className="sm-grid-icon" aria-hidden="true">
-              <span />
-              <span />
-              <span />
-              <span />
-            </span>
-          </button>
-          <Link className="sm-start-button" href="/#booking">
+          <Link className="sm-start-button" href="/booking">
             Get Started
           </Link>
         </div>

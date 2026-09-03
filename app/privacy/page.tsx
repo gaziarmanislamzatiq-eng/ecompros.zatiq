@@ -107,13 +107,13 @@ export default function PrivacyPage() {
               </h2>
               <p style={{ marginBlockEnd: "var(--space-2xl)", lineHeight: "var(--lh-body)" }}>
                 For privacy concerns or requests, contact us at{" "}
-                <a href="/#booking" style={{ color: "var(--color-brand-accent)", textDecoration: "none", fontWeight: 600 }}>
+                <a href="/booking" style={{ color: "var(--color-brand-accent)", textDecoration: "none", fontWeight: 600 }}>
                   our booking page
                 </a>{" "}
                 or through our website contact form.
               </p>
 
-              <Button href="/#booking" size="sm">
+              <Button href="/booking" size="sm">
                 Contact us
                 <ArrowRight aria-hidden="true" size={16} />
               </Button>

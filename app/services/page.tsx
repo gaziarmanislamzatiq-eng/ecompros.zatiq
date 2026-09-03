@@ -69,7 +69,7 @@ export default function ServicesPage() {
               to stitch the work together later.
             </p>
             <div className="services-hero__actions">
-              <Button href="/#booking" size="lg">
+              <Button href="/booking" size="lg">
                 Book a call
                 <ArrowRight aria-hidden="true" size={18} />
               </Button>

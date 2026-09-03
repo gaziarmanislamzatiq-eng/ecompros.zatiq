@@ -258,8 +258,15 @@ const Ferrofluid: React.FC<FerrofluidProps> = ({
       alpha: true,
       antialias: true,
     });
-    rendererRef.current = renderer;
     const gl = renderer.gl;
+    if (!gl) {
+      // ogl already logs "unable to create webgl context" (e.g. hardware
+      // acceleration disabled, no GPU, or a locked-down browser). Bail out
+      // of this purely decorative effect instead of dereferencing a null
+      // gl below, which would throw and take down the rest of the page.
+      return;
+    }
+    rendererRef.current = renderer;
     const canvas = gl.canvas as HTMLCanvasElement;
     gl.clearColor(0, 0, 0, 0);
     canvas.style.width = "100%";

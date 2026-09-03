@@ -100,13 +100,13 @@ export default function TermsPage() {
               </h2>
               <p style={{ marginBlockEnd: "var(--space-2xl)", lineHeight: "var(--lh-body)" }}>
                 For questions about these terms, contact us at{" "}
-                <a href="/#booking" style={{ color: "var(--color-brand-accent)", textDecoration: "none", fontWeight: 600 }}>
+                <a href="/booking" style={{ color: "var(--color-brand-accent)", textDecoration: "none", fontWeight: 600 }}>
                   our booking page
                 </a>{" "}
                 or through our website contact form.
               </p>
 
-              <Button href="/#booking" size="sm">
+              <Button href="/booking" size="sm">
                 Contact us
                 <ArrowRight aria-hidden="true" size={16} />
               </Button>

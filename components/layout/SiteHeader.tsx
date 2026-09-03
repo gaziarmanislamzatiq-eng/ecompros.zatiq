@@ -8,9 +8,8 @@ const navigation: StaggeredMenuItem[] = [
   { label: "Services", ariaLabel: "ViewEcomPros services", link: "/services" },
   { label: "Portfolio", ariaLabel: "ViewEcomPros portfolio", link: "/portfolio" },
   { label: "Pricing", ariaLabel: "ViewEcomPros pricing", link: "/pricing" },
-  { label: "Team", ariaLabel: "Meet theEcomPros team", link: "/team" },
   { label: "Proof", ariaLabel: "View client proof and marks", link: "/#proof" },
-  { label: "Book call", ariaLabel: "Book a call withEcomPros", link: "/#booking" },
+  { label: "Book call", ariaLabel: "Book a call withEcomPros", link: "/booking" },
 ];
 
 export default function SiteHeader() {
