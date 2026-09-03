@@ -386,7 +386,7 @@ export default function Home() {
 
             <Button
               className="booking-whatsapp"
-              href="https://wa.me/?text=Hi%20Ecom%20ProDesk%2C%20I%20want%20to%20discuss%20a%20project."
+              href="https://wa.me/?+8001714437828" //make the number hide from the public
               rel="noreferrer"
               size="md"
               target="_blank"
