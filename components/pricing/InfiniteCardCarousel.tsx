@@ -97,7 +97,7 @@ export default function InfiniteCardCarousel({ ariaLabel, cards }: InfiniteCardC
                   </span>
                   <span className="pricing-card__cap">{card.orderCapLabel}</span>
                 </span>
-                <Link className="pricing-card__cta" href="/#booking">
+                <Link className="pricing-card__cta" href="/booking">
                   Choose plan
                   <ArrowRight aria-hidden="true" size={14} />
                 </Link>

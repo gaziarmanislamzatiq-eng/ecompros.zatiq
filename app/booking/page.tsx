@@ -31,7 +31,7 @@ export default function BookingPage() {
     <div className="page-shell">
       <ScrollCinematics />
 
-      <section className="section section--tight" aria-labelledby="scale-title">
+      <section className="section section--tight booking-scale" aria-labelledby="scale-title">
         <div className="section__inner">
           <div className="section__head">
             <div>
@@ -60,9 +60,11 @@ export default function BookingPage() {
       </section>
 
       <BookingSection>
-        <div className="section__inner section__inner--wide booking-layout">
+        <div className="section__inner section__inner--wide">
+          <p className="section__label booking-section__label">Book a call</p>
+
+          <div className="booking-layout">
           <div data-cinematic="rise">
-            <p className="section__label">Book a call</p>
             <h2 className="section__title" id="booking-title">
               Bring the surface that needs to ship.
             </h2>
@@ -97,6 +99,7 @@ export default function BookingPage() {
 
           <div className="booking-panel" data-cinematic="rise" data-cinematic-delay="2">
             <BookingForm />
+          </div>
           </div>
         </div>
       </BookingSection>
